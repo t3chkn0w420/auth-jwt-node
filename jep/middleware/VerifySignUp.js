@@ -3,7 +3,7 @@ const ROLES = db.ROLES;
 const User = db.user;
 
 checkDuplicatefullnameOrEmail = (req, res, next) => {
-  // Username
+  // fullname
   User.findOne({
     where: {
       fullname: req.body.fullname
@@ -15,7 +15,6 @@ checkDuplicatefullnameOrEmail = (req, res, next) => {
       });
       return;
     }
-
     // Email
     User.findOne({
       where: {
@@ -28,12 +27,10 @@ checkDuplicatefullnameOrEmail = (req, res, next) => {
         });
         return;
       }
-
       next();
     });
   });
 };
-
 checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {
@@ -48,10 +45,8 @@ checkRolesExisted = (req, res, next) => {
   
   next();
 };
-
 const verifySignUp = {
   checkDuplicatefullnameOrEmail: checkDuplicatefullnameOrEmail,
   checkRolesExisted: checkRolesExisted
 };
-
 module.exports = verifySignUp;
