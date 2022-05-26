@@ -1,7 +1,23 @@
 const express = require("express");
 const cors = require("cors");
+const cookieSession = require("cookie-session");
 
 const app = express();
+
+app.use(
+  cookieSession({
+    name: "jepski-sessions",
+    secret: "Secret_Vice66", 
+    // keys: ['rat1', 'rat2'],
+    httpOnly: true
+  })
+);
+
+
+// db.sequelize.sync({force: true}).then(() => {
+//   console.log('Drop and Resync Db');
+//   initial();
+// });
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -38,6 +54,8 @@ const PORT = process.env.PORT || 4200;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+// db.sequelize.sync();
 
 function initial() {
   Role.create({

@@ -1,10 +1,10 @@
-<!-- Methods	Urls	Actions
+Methods	Urls	Actions
 POST	/api/auth/signup	signup new account
 POST	/api/auth/signin	login an account
 POST	/api/auth/signout	logout the account
-GET	/api/test/all	   retrieve public content
-GET	/api/test/user	  access User’s content
-GET	/api/test/mod	   access Moderator’s content
+GET	/api/test/all	retrieve public content
+GET	/api/test/user	access User’s content
+GET	/api/test/mod	access Moderator’s content
 GET	/api/test/admin	access Admin’s content
 
 AUTHENTICATION ROUTES:

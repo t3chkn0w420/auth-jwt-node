@@ -9,15 +9,16 @@ module.exports = function(app) {
     );
     next();
   });
-  app.post(
-    "/api/auth/signup",
+  app.post("/api/auth/signup",
     [
       verifySignUp.checkDuplicatefullnameOrEmail,
       verifySignUp.checkRolesExisted
     ],
-    controller.signup
-  );
+    controller.signup);
+    
   app.post("/api/auth/signin", controller.signin);
+  
+  app.post("/api/auth/signout", controller.signout);
   
   app.post("/api/auth/refreshtoken", controller.refreshToken);
 
