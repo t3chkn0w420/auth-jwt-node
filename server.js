@@ -1,8 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
+var logger = require('morgan');
 
 const app = express();
+app.use(logger('dev'));
 
 app.use(
   cookieSession({
