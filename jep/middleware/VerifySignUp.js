@@ -11,7 +11,7 @@ checkDuplicatefullnameOrEmail = (req, res, next) => {
   }).then(user => {
     if (user) {
       res.status(400).send({
-        message: "Failed! fullname is already in use!"
+        message: "Failed! Name is already in use! 🤔🤔"
       });
       return;
     }
@@ -23,7 +23,7 @@ checkDuplicatefullnameOrEmail = (req, res, next) => {
     }).then(user => {
       if (user) {
         res.status(400).send({
-          message: "Failed! Email is already in use!"
+          message: "Failed! Email is already in use! 😑😐"
         });
         return;
       }

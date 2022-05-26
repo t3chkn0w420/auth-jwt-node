@@ -5,11 +5,14 @@ const Role = db.role;
 const Op = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+
 exports.signup = (req, res) => {
   // Save User to Database
   User.create({
     fullname: req.body.fullname,
     email: req.body.email,
+    role: req.body.user_roles,
+    image: req.body.image,
     password: bcrypt.hashSync(req.body.password, 8)
   })
     .then(user => {
@@ -22,13 +25,13 @@ exports.signup = (req, res) => {
           }
         }).then(roles => {
           user.setRoles(roles).then(() => {
-            res.send({ message: "User was registered successfully!" });
+            res.send({ message: "User was registered successfully! 😎" });
           });
         });
       } else {
         // user role = 1
         user.setRoles([1]).then(() => {
-          res.send({ message: "User was registered successfully!" });
+          res.send({ message: "User was registered successfully! 😘" });
         });
       }
     })
@@ -44,7 +47,7 @@ exports.signin = (req, res) => {
   })
     .then(user => {
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(404).send({ message: "User Not found 😑😑."});
       }
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
@@ -53,7 +56,7 @@ exports.signin = (req, res) => {
       if (!passwordIsValid) {
         return res.status(401).send({
           accessToken: null,
-          message: "Invalid Password!"
+          message: "Invalid Password! 😯"
         });
       }
       var token = jwt.sign({ id: user.id }, config.secret, {
@@ -68,6 +71,7 @@ exports.signin = (req, res) => {
           id: user.id,
           fullname: user.fullname,
           email: user.email,
+          image: user.image,
           roles: authorities,
           accessToken: token
         });

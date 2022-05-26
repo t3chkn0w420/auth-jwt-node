@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
     password: {
       type: Sequelize.STRING
     },
-    role: {
+    user_roles: {
       type: Sequelize.STRING
      },
      image: {
